@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrackMoney.Views.HomePage"
+             xmlns:local="clr-namespace:TrackMoney.Helpers"
+             xmlns:viewModels="clr-namespace:TrackMoney.ViewModels"
+             x:DataType="viewModels:HomeVM"
+             Title="HomePage">
+
+    <Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,*" 
+          Padding="16"
+          RowSpacing="8">
+
+
+        <Grid RowDefinitions="auto" 
+          ColumnDefinitions="32,*,32" 
+          Margin="0,0,0,8">
+
+            <Label Text="Track Money" Style="{StaticResource Headline}"
+                   FontSize="24"
+               VerticalTextAlignment="Center"  VerticalOptions="Fill" Grid.Column="1"/>
+            <Label Text="{Static local:FontAwesomeIcons.Gear}" 
+               Style="{StaticResource FASolidLabel}"
+               Grid.Column="2">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+
+
+        <Label Text="+1050.00€" TextColor="Green" Grid.Row="1"/>
+        <Label Text="-1000.00€" TextColor="IndianRed" HorizontalOptions="End" Grid.Row="1"/>
+        <ProgressBar  ProgressColor="Green" Progress="0.55" Grid.Row="2" />
+        <Label Text="+50.00€" TextColor="Orange" HorizontalOptions="Center" Grid.Row="3"/>
+
+        <Image Grid.Row="4"
+                Source="dotnet_bot.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+
+        <Button Text="Add expenses" Margin="0,8" TextColor="White" BackgroundColor="IndianRed" Grid.Row="5"/>
+        <Button Text="Add proceeds" Margin="0,8" TextColor="White" BackgroundColor="Green" Grid.Row="6"/>
+
+
+        <CollectionView Grid.Row="7">
+            <CollectionView.Header>
+                <VerticalStackLayout>
+                    <Label Text="Grafico a torta"/>
+                    <Label Text="Ultimo mese"/>
+
+
+
+                </VerticalStackLayout>
+            </CollectionView.Header>
+
+
+        </CollectionView>
+
+
+
+
+    </Grid>
+</ContentPage>
