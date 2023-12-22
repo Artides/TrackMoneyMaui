@@ -12,6 +12,8 @@ public static class MauiProgram
 
     public static MauiApp? App { get; private set; }
 
+    public static IServiceProvider? ServiceProvider => App?.Services.CreateScope().ServiceProvider;
+
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
@@ -36,14 +38,14 @@ public static class MauiProgram
 
         App = builder.Build();
         
-        StartupOperations(App.Services.CreateScope().ServiceProvider);
+        StartupOperations();
 
         return App;
     }
 
-    private static void StartupOperations(IServiceProvider provider) 
+    private static void StartupOperations() 
     {
-        provider.GetService<INavigationService>()?.RegisterRoutes();
+        ServiceProvider?.GetService<INavigationService>()?.RegisterRoutes();
     }
 
 }
