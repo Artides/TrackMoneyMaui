@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using TrackMoney.Models;
 using TrackMoney.Repositories;
 using TrackMoney.Services;
 using TrackMoney.ViewModels;
@@ -47,6 +48,7 @@ public static class MauiProgram
     private static void Startup()
     {
         GetService<INavigationService>()?.RegisterRoutes();
+        GetService<ISqliteService>()?.InitDatabase(typeof(BalanceItem));
     }
 
 }

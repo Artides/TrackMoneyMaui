@@ -5,8 +5,9 @@ internal static class ServicesRegistration
     internal static MauiAppBuilder AddServices(this MauiAppBuilder builder) 
     {
 
-        builder.Services.
-            AddSingleton<INavigationService, NavigationService>();
+        builder.Services
+            .AddSingleton<INavigationService, NavigationService>()
+            .AddSingleton<ISqliteService, SqliteService>();
 
         return builder;
     }
