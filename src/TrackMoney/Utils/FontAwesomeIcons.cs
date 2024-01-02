@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace TrackMoney.Helpers;
+namespace TrackMoney.Utils;
 
 /// <summary>
 /// The unicode values for all FontAwesome v6.4.2 icons.

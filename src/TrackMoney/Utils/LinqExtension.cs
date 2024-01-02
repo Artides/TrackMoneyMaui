@@ -1,6 +1,6 @@
-﻿namespace TrackMoney.Helpers;
+﻿namespace TrackMoney.Utils;
 
-internal static class LinqExtender
+internal static class LinqExtension
 {
 
     internal static bool NullOrEmpty<TSource>(this IEnumerable<TSource> source) => source == null || !source.Any();

@@ -1,1 +1,2 @@
-﻿global using TrackMoney.Helpers;
+﻿global using TrackMoney.Utils;
+global using TrackMoney.Resources.Strings;

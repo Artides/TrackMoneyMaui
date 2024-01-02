@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrackMoney.Views.HomePage"
-             xmlns:local="clr-namespace:TrackMoney.Helpers"
+             xmlns:utils="clr-namespace:TrackMoney.Utils"
              xmlns:viewModels="clr-namespace:TrackMoney.ViewModels"
              x:DataType="viewModels:HomeVM"
              Title="HomePage">
@@ -19,7 +19,7 @@
             <Label Text="Track Money" Style="{StaticResource Headline}"
                    FontSize="24"
                VerticalTextAlignment="Center"  VerticalOptions="Fill" Grid.Column="1"/>
-            <Label Text="{Static local:FontAwesomeIcons.Gear}" 
+            <Label Text="{Static utils:FontAwesomeIcons.Gear}" 
                Style="{StaticResource FASolidLabel}"
                Grid.Column="2">
                 <Label.GestureRecognizers>
@@ -49,9 +49,9 @@
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
-        <Button Text="Add expenses" Margin="0,8" TextColor="White" BackgroundColor="IndianRed" Grid.Row="5"
+        <Button Text="{utils:Translate AddExpenses}" Margin="0,8" TextColor="White" BackgroundColor="IndianRed" Grid.Row="5"
                 Command="{Binding AddExpenseCommand}"/>
-        <Button Text="Add proceeds" Margin="0,8" TextColor="White" BackgroundColor="Green" Grid.Row="6"
+        <Button Text="{utils:Translate AddProceeds}" Margin="0,8" TextColor="White" BackgroundColor="Green" Grid.Row="6"
                 Command="{Binding AddProceedCommand}"/>
 
 

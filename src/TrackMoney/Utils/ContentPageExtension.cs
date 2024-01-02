@@ -1,8 +1,8 @@
 ﻿using TrackMoney.ViewModels;
 
-namespace TrackMoney.Helpers;
+namespace TrackMoney.Utils;
 
-internal static class ContentPageExtender
+internal static class ContentPageExtension
 
 {
     internal static T? AssignViewModel<T>(this ContentPage page) where T : BaseViewModel
