@@ -3,16 +3,19 @@ using Microsoft.Extensions.Logging;
 using TrackMoney.Repositories;
 using TrackMoney.Services;
 using TrackMoney.ViewModels;
-using TrackMoney.Views;
 
 namespace TrackMoney;
 
 public static class MauiProgram
 {
 
-    public static MauiApp? App { get; private set; }
+    static MauiApp? App;
 
-    public static IServiceProvider? ServiceProvider => App?.Services.CreateScope().ServiceProvider;
+    public static T? GetService<T>()
+    {
+        if (App == null) throw new ArgumentNullException(nameof(MauiApp));
+        return App.Services.CreateScope().ServiceProvider.GetService<T>();
+    }
 
     public static MauiApp CreateMauiApp()
     {
@@ -33,19 +36,17 @@ public static class MauiProgram
             });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
         App = builder.Build();
-        
-        StartupOperations();
-
+        Startup();
         return App;
     }
 
-    private static void StartupOperations() 
+    private static void Startup()
     {
-        ServiceProvider?.GetService<INavigationService>()?.RegisterRoutes();
+        GetService<INavigationService>()?.RegisterRoutes();
     }
 
 }

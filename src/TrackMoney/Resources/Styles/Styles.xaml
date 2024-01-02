@@ -6,7 +6,7 @@
 
     <Style TargetType="Label" x:Key="FARegLabel">
         <Setter Property="FontFamily" Value="FA6Regular"/>
-        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="VerticalOptions" Value="Fill"/>
         <Setter Property="VerticalTextAlignment" Value="Center"/>

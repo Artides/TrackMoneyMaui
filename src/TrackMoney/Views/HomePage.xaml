@@ -32,7 +32,15 @@
 
         <Label Text="+1050.00€" TextColor="Green" Grid.Row="1"/>
         <Label Text="-1000.00€" TextColor="IndianRed" HorizontalOptions="End" Grid.Row="1"/>
-        <ProgressBar  ProgressColor="Green" Progress="0.55" Grid.Row="2" />
+        <Grid RowDefinitions="10" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding ProceedPercentage}"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame BackgroundColor="IndianRed" CornerRadius="5" Grid.ColumnSpan="2" BorderColor="IndianRed"/>
+            <Frame BackgroundColor="Green" CornerRadius="5" Grid.Column="0" BorderColor="DarkGreen" />
+        </Grid>
+        
         <Label Text="+50.00€" TextColor="Orange" HorizontalOptions="Center" Grid.Row="3"/>
 
         <Image Grid.Row="4"
@@ -41,8 +49,10 @@
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
-        <Button Text="Add expenses" Margin="0,8" TextColor="White" BackgroundColor="IndianRed" Grid.Row="5"/>
-        <Button Text="Add proceeds" Margin="0,8" TextColor="White" BackgroundColor="Green" Grid.Row="6"/>
+        <Button Text="Add expenses" Margin="0,8" TextColor="White" BackgroundColor="IndianRed" Grid.Row="5"
+                Command="{Binding AddExpenseCommand}"/>
+        <Button Text="Add proceeds" Margin="0,8" TextColor="White" BackgroundColor="Green" Grid.Row="6"
+                Command="{Binding AddProceedCommand}"/>
 
 
         <CollectionView Grid.Row="7">

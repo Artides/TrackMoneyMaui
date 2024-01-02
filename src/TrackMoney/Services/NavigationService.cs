@@ -12,12 +12,17 @@ namespace TrackMoney.Services
     {
         public void NavigateBack()
         {
-            throw new NotImplementedException();
+            Shell.Current.GoToAsync("..");
         }
 
-        public void NavigateToPage(string pageRoute, IDictionary<string,object>? parameters = null)
+        public void NavigateToPage(string pageRoute, params (string,object)[] parameters)
         {
-            Shell.Current.GoToAsync(pageRoute, parameters ?? new Dictionary<string, object>());
+            var dictionary = new Dictionary<string, object>();
+
+            if (parameters != null && parameters.Any())
+                foreach (var p in parameters) dictionary.TryAdd(p.Item1, p.Item2);
+
+            Shell.Current.GoToAsync(pageRoute, dictionary);
         }
 
         public void RegisterRoutes()
