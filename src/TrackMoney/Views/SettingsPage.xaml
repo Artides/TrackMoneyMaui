@@ -2,11 +2,56 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrackMoney.Views.SettingsPage"
+             xmlns:utils="clr-namespace:TrackMoney.Utils"
+             xmlns:viewModels="clr-namespace:TrackMoney.ViewModels"
+             xmlns:theme="clr-namespace:Microsoft.Maui.ApplicationModel;assembly=Microsoft.Maui.Essentials"
+             x:DataType="viewModels:SettingsVM"
              Title="SettingsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Padding="16">
+
+        <Grid RowDefinitions="auto" 
+          ColumnDefinitions="32,*,32" 
+          Margin="0,0,0,8">
+            <Label Text="{Static utils:FontAwesomeIcons.ChevronLeft}" 
+               Style="{StaticResource FASolidLabel}"
+               Grid.Column="0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="{utils:Translate Settings}" Style="{StaticResource Headline}"
+                   FontSize="24"
+                   VerticalTextAlignment="Center"  VerticalOptions="Fill" Grid.Column="1"/>
+
+        </Grid>
+        <ScrollView Orientation="Vertical">
+            <VerticalStackLayout>
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="Theme" VerticalOptions="Fill" VerticalTextAlignment="Center" />
+                    <Button Text="Like OS" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Unspecified}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding IsOsMode}" Value="True">
+                                <Setter Property="Style" Value="{StaticResource DeactivateButton}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="Light mode" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Light}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding IsLightMode}" Value="True">
+                                <Setter Property="Style" Value="{StaticResource DeactivateButton}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="Dark mode" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Dark}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding IsDarkMode}" Value="True">
+                                <Setter Property="Style" Value="{StaticResource DeactivateButton}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

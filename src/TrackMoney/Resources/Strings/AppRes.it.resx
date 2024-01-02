@@ -123,4 +123,7 @@
   <data name="AddProceeds" xml:space="preserve">
     <value>Aggiungi entrate</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
 </root>
