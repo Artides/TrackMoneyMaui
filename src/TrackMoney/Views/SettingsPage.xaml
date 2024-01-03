@@ -28,22 +28,22 @@
         <ScrollView Orientation="Vertical">
             <VerticalStackLayout>
                 <HorizontalStackLayout Spacing="8">
-                    <Label Text="Theme" VerticalOptions="Fill" VerticalTextAlignment="Center" />
-                    <Button Text="Like OS" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Unspecified}">
+                    <Label Text="{utils:Translate Theme}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
+                    <Button Text="{utils:Translate LikeOS}" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Unspecified}">
                         <Button.Triggers>
                             <DataTrigger TargetType="Button" Binding="{Binding IsOsMode}" Value="True">
                                 <Setter Property="Style" Value="{StaticResource DeactivateButton}"/>
                             </DataTrigger>
                         </Button.Triggers>
                     </Button>
-                    <Button Text="Light mode" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Light}">
+                    <Button Text="{utils:Translate LightMode}" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Light}">
                         <Button.Triggers>
                             <DataTrigger TargetType="Button" Binding="{Binding IsLightMode}" Value="True">
                                 <Setter Property="Style" Value="{StaticResource DeactivateButton}"/>
                             </DataTrigger>
                         </Button.Triggers>
                     </Button>
-                    <Button Text="Dark mode" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Dark}">
+                    <Button Text="{utils:Translate DarkMode}" Command="{Binding SetThemeCommand}" CommandParameter="{Static theme:AppTheme.Dark}">
                         <Button.Triggers>
                             <DataTrigger TargetType="Button" Binding="{Binding IsDarkMode}" Value="True">
                                 <Setter Property="Style" Value="{StaticResource DeactivateButton}"/>

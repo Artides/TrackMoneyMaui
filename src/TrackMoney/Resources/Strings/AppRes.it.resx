@@ -126,4 +126,22 @@
   <data name="Settings" xml:space="preserve">
     <value>Impostazioni</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="LikeOS" xml:space="preserve">
+    <value>Tema sistema</value>
+  </data>
+  <data name="LightMode" xml:space="preserve">
+    <value>Tema chiaro</value>
+  </data>
+  <data name="DarkMode" xml:space="preserve">
+    <value>Tema scuro</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Aggiungi</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantità</value>
+  </data>
 </root>

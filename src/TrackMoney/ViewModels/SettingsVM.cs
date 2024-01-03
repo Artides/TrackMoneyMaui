@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using TrackMoney.Models;
-using TrackMoney.Repositories;
 using TrackMoney.Services;
 
 namespace TrackMoney.ViewModels;
@@ -39,12 +37,6 @@ internal partial class SettingsVM(INavigationService navigationService, ISetting
     {
         await _settingService.SetTheme(theme);
         UpdateThemeMode();
-    }
-
-    [RelayCommand]
-    void GoBack()
-    {
-        _navigationService.NavigateBack();
     }
 
 }

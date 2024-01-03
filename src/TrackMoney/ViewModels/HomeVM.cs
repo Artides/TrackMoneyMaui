@@ -7,11 +7,16 @@ namespace TrackMoney.ViewModels;
 internal partial class HomeVM(INavigationService navigationService) : BaseViewModel(navigationService)
 {
     [ObservableProperty]
-    GridLength proceedPercentage = GridLength.Star;
+    GridLength proceedPercentage = new(0.5, GridUnitType.Star);
+
+    [ObservableProperty]
+    GridLength expensePercentage = new(0.5, GridUnitType.Star);
 
     public override Task OnAppearing()
     {
-        ProceedPercentage = new GridLength(1.5, GridUnitType.Star);
+        var percentage = 0.2;
+        ProceedPercentage = new GridLength(percentage, GridUnitType.Star);
+        ExpensePercentage = new GridLength(1 - percentage, GridUnitType.Star);
 
         return base.OnAppearing();
     }
