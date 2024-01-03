@@ -1,10 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using TrackMoney.Models;
+using TrackMoney.Repositories;
 using TrackMoney.Services;
 
 namespace TrackMoney.ViewModels;
 
-internal partial class SettingsVM(INavigationService navigationService) : BaseViewModel(navigationService)
+internal partial class SettingsVM(INavigationService navigationService, ISettingService settingService) : BaseViewModel(navigationService)
 {
 
     [ObservableProperty]
@@ -14,24 +16,28 @@ internal partial class SettingsVM(INavigationService navigationService) : BaseVi
     [ObservableProperty]
     bool isDarkMode;
 
+    private readonly ISettingService _settingService = settingService;
 
-    public override Task OnAppearing()
+    private AppTheme currentTheme;
+
+    public async override Task OnAppearing()
     {
         UpdateThemeMode();
-        return base.OnAppearing();
+        await base.OnAppearing();
     }
 
     private void UpdateThemeMode()
     {
-        IsOsMode = Application.Current.UserAppTheme == AppTheme.Unspecified;
-        IsLightMode = Application.Current.UserAppTheme == AppTheme.Light;
-        IsDarkMode = Application.Current.UserAppTheme == AppTheme.Dark;
+        currentTheme = _settingService.GetTheme();
+        IsOsMode = currentTheme == AppTheme.Unspecified;
+        IsLightMode = currentTheme == AppTheme.Light;
+        IsDarkMode = currentTheme == AppTheme.Dark;
     }
 
     [RelayCommand]
-    void SetTheme(AppTheme theme)
+    async void SetTheme(AppTheme theme)
     {
-        Application.Current.UserAppTheme = theme;
+        await _settingService.SetTheme(theme);
         UpdateThemeMode();
     }
 

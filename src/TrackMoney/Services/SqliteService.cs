@@ -17,20 +17,11 @@ internal class SqliteService : ISqliteService
         // enable multi-threaded database access
         SQLiteOpenFlags.SharedCache;
 
-
-    public async void InitDatabase(params Type[] tables)
+    public SQLiteAsyncConnection? GetConnection()
     {
-        _database = new SQLiteAsyncConnection(dbPath, Flags);
-
-        if (tables.Empty()) return;
-
-        foreach (var table in tables)
-        {
-            if (table == null || table.BaseType != typeof(BaseModel)) throw new Exception("The type does not derive from BaseModel class");
-            await _database.CreateTableAsync(table);
-        }
+        _database ??= new SQLiteAsyncConnection(dbPath, Flags);
+        return _database;
     }
 
-    public SQLiteAsyncConnection? GetConnection() => _database;
-
+    public Task AddOrUpdateTable<TEntity>() where TEntity : BaseModel => _database?.CreateTableAsync(typeof(TEntity)) ?? throw new Exception("Database connection is null.");
 }

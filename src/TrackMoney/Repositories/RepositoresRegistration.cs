@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TrackMoney.Models;
+﻿using TrackMoney.Models;
 
-namespace TrackMoney.Repositories
+namespace TrackMoney.Repositories;
+
+internal static class RepositoresRegistration
 {
-    internal static class RepositoresRegistration
+    internal static MauiAppBuilder AddRepositories(this MauiAppBuilder builder)
     {
-        internal static MauiAppBuilder AddRepositories(this MauiAppBuilder builder)
-        {
-            builder.Services
-                .AddScoped<IRepository<BalanceItem>, Repository<BalanceItem>>();
-            return builder;
-        }
+        builder.Services
+            .AddScoped<IRepository<BalanceItem>, Repository<BalanceItem>>()
+            .AddScoped<IRepository<Setting>, Repository<Setting>>()
+            ;
+        return builder;
     }
 }

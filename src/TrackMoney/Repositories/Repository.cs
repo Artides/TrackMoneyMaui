@@ -5,9 +5,17 @@ using TrackMoney.Services;
 
 namespace TrackMoney.Repositories;
 
-internal class Repository<T>(ISqliteService sqliteService) : IRepository<T> where T : BaseModel, new()
+internal class Repository<T> : IRepository<T> where T : BaseModel, new()
 {
-    private readonly SQLiteAsyncConnection _connection = sqliteService.GetConnection() ?? throw new Exception("The sqlite connection is null.");
+    private readonly SQLiteAsyncConnection _connection;
+    public Repository(ISqliteService sqliteService, bool registerSqliteTable = true)
+    {
+        _connection = sqliteService.GetConnection() ?? throw new Exception("The sqlite connection is null.");
+        if (registerSqliteTable)
+        {
+            sqliteService.AddOrUpdateTable<T>();
+        }
+    }
 
     public virtual Task<List<T>> Get()
     {

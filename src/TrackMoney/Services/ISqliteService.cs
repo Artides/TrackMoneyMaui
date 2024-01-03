@@ -1,9 +1,10 @@
 ﻿using SQLite;
+using TrackMoney.Models;
 
 namespace TrackMoney.Services;
 
 internal interface ISqliteService
 {
-    void InitDatabase(params Type[] tables);
+    Task AddOrUpdateTable<TEntity>() where TEntity : BaseModel;
     SQLiteAsyncConnection? GetConnection();
 }

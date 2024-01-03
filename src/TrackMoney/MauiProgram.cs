@@ -41,14 +41,7 @@ public static class MauiProgram
 #endif
 
         App = builder.Build();
-        Startup();
         return App;
-    }
-
-    private static void Startup()
-    {
-        GetService<INavigationService>()?.RegisterRoutes();
-        GetService<ISqliteService>()?.InitDatabase(typeof(BalanceItem));
     }
 
 }
