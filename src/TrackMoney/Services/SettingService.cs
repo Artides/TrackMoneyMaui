@@ -11,7 +11,7 @@ internal class SettingService(IRepository<Setting> settingRepo) : ISettingServic
     public async Task<Setting> GetSetting()
     {
         if (setting != null) return setting;
-        setting = await settingRepo.Get(1);
+        setting = await settingRepo.GetAsync(1);
         setting ??= new Setting();
         return setting;
     }
@@ -27,7 +27,7 @@ internal class SettingService(IRepository<Setting> settingRepo) : ISettingServic
     public Task<Setting> SaveSetting(Setting setting)
     {
         if (setting.Id != 0) setting.Id = 1;
-        return settingRepo.InsertOrUpdate(setting);
+        return settingRepo.InsertOrUpdateAsync(setting);
     }
 
     public async Task SetTheme(AppTheme theme)

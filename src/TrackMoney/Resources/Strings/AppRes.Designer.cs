@@ -97,6 +97,15 @@ namespace TrackMoney.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Energy utility.
+        /// </summary>
+        internal static string EnergyUtility {
+            get {
+                return ResourceManager.GetString("EnergyUtility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Light mode.
         /// </summary>
         internal static string LightMode {
@@ -124,11 +133,29 @@ namespace TrackMoney.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Raw material.
+        /// </summary>
+        internal static string RawMaterial {
+            get {
+                return ResourceManager.GetString("RawMaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shop rent.
+        /// </summary>
+        internal static string ShopRent {
+            get {
+                return ResourceManager.GetString("ShopRent", resourceCulture);
             }
         }
         

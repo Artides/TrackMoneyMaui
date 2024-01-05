@@ -1,4 +1,5 @@
-﻿using TrackMoney.Services;
+﻿using TrackMoney.Repositories;
+using TrackMoney.Services;
 
 namespace TrackMoney;
 
@@ -15,5 +16,6 @@ public partial class App : Application
     {
         MauiProgram.GetService<INavigationService>()?.RegisterRoutes();
         MauiProgram.GetService<ISettingService>()?.Init();
+        MauiProgram.GetService<IExpenseTypeRepository>()?.InitDefaultsAsync();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using TrackMoney.Models;
 using TrackMoney.Services;
 
 namespace TrackMoney.ViewModels;
@@ -9,13 +10,20 @@ internal enum EditType : int
     Proceed = 1,
 }
 
-internal partial class EditBalanceVM(INavigationService navigationService) : BaseViewModel(navigationService)
+internal partial class EditBalanceVM(
+    INavigationService navigationService,
+    IBalanceService balanceService) : BaseViewModel(navigationService)
 {
+    private readonly IBalanceService balanceService = balanceService;
+
     [ObservableProperty]
-    private string title;
+    private string? title;
 
     [ObservableProperty]
     private double? quantity;
+
+    [ObservableProperty]
+    private List<ExpenseType>? expenseTypes;
 
     public EditType? BalanceType { get; private set; }
 
@@ -26,7 +34,7 @@ internal partial class EditBalanceVM(INavigationService navigationService) : Bas
         if (query.TryGetValue(nameof(BalanceType), out object? value)) BalanceType = value as EditType?;
     }
 
-    public override Task OnAppearing()
+    public async override Task OnAppearing()
     {
         Title = BalanceType switch
         {
@@ -34,7 +42,9 @@ internal partial class EditBalanceVM(INavigationService navigationService) : Bas
             EditType.Proceed => AppRes.AddProceeds,
             _ => throw new Exception("BalanceType is not valid"),
         };
-        return base.OnAppearing();
+
+        ExpenseTypes = await balanceService.GetExpenseTypesAsync();
+        await base.OnAppearing();
     }
 
 

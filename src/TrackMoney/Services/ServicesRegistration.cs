@@ -9,6 +9,7 @@ internal static class ServicesRegistration
             .AddSingleton<INavigationService, NavigationService>()
             .AddSingleton<ISqliteService, SqliteService>()
             .AddSingleton<ISettingService, SettingService>()
+            .AddSingleton<IBalanceService, BalanceService>()
             ;
 
         return builder;

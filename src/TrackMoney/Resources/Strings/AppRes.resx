@@ -144,4 +144,13 @@
   <data name="Quantity" xml:space="preserve">
     <value>Quantity</value>
   </data>
+  <data name="RawMaterial" xml:space="preserve">
+    <value>Raw material</value>
+  </data>
+  <data name="EnergyUtility" xml:space="preserve">
+    <value>Energy utility</value>
+  </data>
+  <data name="ShopRent" xml:space="preserve">
+    <value>Shop rent</value>
+  </data>
 </root>

@@ -17,24 +17,24 @@ internal class Repository<T> : IRepository<T> where T : BaseModel, new()
         }
     }
 
-    public virtual Task<List<T>> Get()
+    public virtual Task<List<T>> GetAsync()
     {
         return _connection.Table<T>().ToListAsync();
     }
 
-    public virtual Task<T> Get(int id)
+    public virtual Task<T> GetAsync(int id)
     {
         return _connection.FindAsync<T>(id);
     }
 
-    public virtual Task<List<T>> Get(Expression<Func<T, bool>> predicate)
+    public virtual Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate)
     {
         return _connection.Table<T>().Where(predicate).ToListAsync();
     }
 
-    public virtual async Task<T> InsertOrUpdate(T entity)
+    public virtual async Task<T> InsertOrUpdateAsync(T entity)
     {
-        if (entity.Id >= 0 && await Get(entity.Id) != null)
+        if (entity.Id >= 0 && await GetAsync(entity.Id) != null)
         {
             entity.UpdatedAt = DateTime.UtcNow;
             await _connection.UpdateAsync(entity);
@@ -48,13 +48,14 @@ internal class Repository<T> : IRepository<T> where T : BaseModel, new()
     }
 
 
-    public virtual Task Delete(T entity)
+    public async virtual Task<bool> DeleteAsync(T entity)
     {
-        return _connection.DeleteAsync(entity);
+        var result = await _connection.DeleteAsync(entity);
+        return result > 0;
     }
 
 
-    public virtual Task Truncate()
+    public virtual Task TruncateAsync()
     {
         return _connection.DeleteAllAsync<T>();
     }

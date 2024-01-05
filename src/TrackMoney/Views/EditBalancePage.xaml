@@ -24,16 +24,26 @@
                    VerticalTextAlignment="Center"  VerticalOptions="Fill" Grid.Column="1"/>
 
         </Grid>
-        
+
         <Image Grid.Row="1"
          Source="dotnet_bot.png"
          HeightRequest="185"
          Aspect="AspectFit"
          SemanticProperties.Description="dot net bot in a race car number eight" />
 
-        <Label Text="{utils:Translate Quantity}" Grid.Row="2" VerticalOptions="End" Margin="4,0"/>
-        <Entry Text="{Binding Quantity}" Keyboard="Numeric" VerticalOptions="Start" Grid.Row="3" 
-               BackgroundColor="{StaticResource Secondary}"/>
+        <Picker ItemsSource="{Binding ExpenseTypes}" 
+                ItemDisplayBinding="{Binding LocalizedDescription}" 
+                BackgroundColor="{StaticResource Secondary}"
+                Grid.Row="2" VerticalOptions="End"/>
+
+        <Frame BackgroundColor="{StaticResource Secondary}" 
+               VerticalOptions="Center"
+               Grid.Row="3">
+            <VerticalStackLayout>
+                <Label Text="{utils:Translate Quantity}" Grid.Row="2"  Margin="4,0"/>
+                <Entry Text="{Binding Quantity}" Keyboard="Numeric" VerticalOptions="Start"/>
+            </VerticalStackLayout>
+        </Frame>
 
         <Button Text="{utils:Translate Add}" Grid.Row="4" Margin="0,0,0,64"/>
     </Grid>
