@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using TrackMoney.Models;
 using TrackMoney.Services;
 
@@ -25,6 +26,12 @@ internal partial class EditBalanceVM(
     [ObservableProperty]
     private List<ExpenseType>? expenseTypes;
 
+    [ObservableProperty]
+    private ExpenseType? selectedExpenseType;
+
+    [ObservableProperty]
+    private bool expenseTypesIsVisible;
+
     public EditType? BalanceType { get; private set; }
 
     public override void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -36,16 +43,37 @@ internal partial class EditBalanceVM(
 
     public async override Task OnAppearing()
     {
-        Title = BalanceType switch
+        switch (BalanceType)
         {
-            EditType.Expense => AppRes.AddExpenses,
-            EditType.Proceed => AppRes.AddProceeds,
-            _ => throw new Exception("BalanceType is not valid"),
-        };
+            case EditType.Expense:
+                Title = AppRes.AddExpenses;
+                ExpenseTypes = await balanceService.GetExpenseTypesAsync();
+                ExpenseTypesIsVisible = true;
+                break;
+            case EditType.Proceed:
+                Title = AppRes.AddProceeds;
+                ExpenseTypesIsVisible = false;
+                var proceedType = await balanceService.GetProceedTypeAsync();
+                ExpenseTypes = [proceedType];
+                SelectedExpenseType = proceedType;
+                break;
+            case null:
+            default:
+                throw new Exception("BalanceType is not valid");
+        }
 
-        ExpenseTypes = await balanceService.GetExpenseTypesAsync();
         await base.OnAppearing();
     }
 
+    [RelayCommand]
+    void AddBalance()
+    {
+        if (Quantity == null || Quantity == 0) return;
+
+        if (SelectedExpenseType == null) return;
+
+        balanceService.AddToBalanceAsync(SelectedExpenseType, Quantity.Value);
+
+    }
 
 }

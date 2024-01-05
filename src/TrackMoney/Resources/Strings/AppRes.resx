@@ -153,4 +153,7 @@
   <data name="ShopRent" xml:space="preserve">
     <value>Shop rent</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
 </root>
