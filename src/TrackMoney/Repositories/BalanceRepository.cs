@@ -5,4 +5,5 @@ namespace TrackMoney.Repositories;
 
 internal class BalanceRepository(ISqliteService sqliteService) : Repository<BalanceItem>(sqliteService), IBalanceRepository
 {
+    
 }

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Mopups.Hosting;
 using TrackMoney.Models;
 using TrackMoney.Repositories;
 using TrackMoney.Services;
@@ -34,7 +35,8 @@ public static class MauiProgram
                 fonts.AddFont("FA6Brands.otf", "FA6Brands");
                 fonts.AddFont("FA6Regular.otf", "FA6Regular");
                 fonts.AddFont("FA6Solid.otf", "FA6Solid");
-            });
+            })
+            .ConfigureMopups();
 
 #if DEBUG
         builder.Logging.AddDebug();

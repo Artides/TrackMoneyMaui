@@ -4,7 +4,7 @@ using TrackMoney.Services;
 
 namespace TrackMoney.ViewModels;
 
-internal partial class BaseViewModel(INavigationService navigationService) : ObservableObject, IQueryAttributable
+internal abstract partial class BaseViewModel(INavigationService navigationService) : ObservableObject, IQueryAttributable
 {
     protected readonly INavigationService _navigationService = navigationService;
 

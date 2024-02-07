@@ -4,7 +4,7 @@
              x:Class="TrackMoney.Views.HistoryPage"
              Title="HistoryPage">
     <VerticalStackLayout>
-        <Label 
+        <Label
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />

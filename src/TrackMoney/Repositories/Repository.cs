@@ -42,6 +42,7 @@ internal class Repository<T> : IRepository<T> where T : BaseModel, new()
         }
         else
         {
+            entity.Id = 0;
             await _connection.InsertAsync(entity);
             return entity;
         }
