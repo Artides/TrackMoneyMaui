@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrackMoney.Views.EditBalancePage"
+             xmlns:utils="clr-namespace:TrackMoney.Utils"
+             xmlns:behaviors="clr-namespace:TrackMoney.Behaviors"
+             xmlns:viewModels="clr-namespace:TrackMoney.ViewModels"
+             x:DataType="viewModels:EditBalanceVM"
+             Title="EditBalancePage">
+    <Grid Padding="16"
+          RowDefinitions="auto,2*,*,*,auto">
+        <Grid RowDefinitions="auto" 
+              ColumnDefinitions="32,*,32" 
+              Margin="0,0,0,8">
+            <Label Text="{Static utils:FontAwesomeIcons.ChevronLeft}" 
+                   Style="{StaticResource FASolidLabel}"
+                    Grid.Column="0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="{Binding Title}" Style="{StaticResource Headline}"
+                   FontSize="24"
+                   VerticalTextAlignment="Center"  VerticalOptions="Fill" Grid.Column="1"/>
+
+        </Grid>
+
+        <Image Grid.Row="1"
+         Source="dotnet_bot.png"
+         HeightRequest="185"
+         Aspect="AspectFit"
+         SemanticProperties.Description="dot net bot in a race car number eight" />
+        <Frame BackgroundColor="{StaticResource Secondary}" 
+               VerticalOptions="End"
+               IsVisible="{Binding ExpenseTypesIsVisible}"
+               Grid.Row="2">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="{utils:Translate Type}" Margin="4,0"/>
+                <Picker ItemsSource="{Binding ExpenseTypes}" 
+                ItemDisplayBinding="{Binding LocalizedDescription}" 
+                SelectedItem="{Binding SelectedExpenseType}"
+                Grid.Row="2" 
+                BackgroundColor="{StaticResource White}"
+                />
+            </VerticalStackLayout>
+        </Frame>
+
+        <Frame BackgroundColor="{StaticResource Secondary}" 
+               VerticalOptions="Center"
+               Grid.Row="3">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="{utils:Translate Quantity}" Margin="4,0"/>
+                <Entry Text="{Binding Quantity}" Keyboard="Numeric" VerticalOptions="Start"
+                       BackgroundColor="{StaticResource White}">
+                    <Entry.Behaviors>
+                        <behaviors:DoubleEntryBehavior/>
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button Text="{utils:Translate Add}" 
+                Command="{Binding AddBalanceCommand}"
+                Grid.Row="4" Margin="0,0,0,64"/>
+    </Grid>
+</ContentPage>
